@@ -29,7 +29,7 @@ def game():
     if request.method == 'POST' and 'username' in request.form:
         session["username"] = request.form['username']
         session["status"] = {
-            'candidates': [],
+            'context': [],
             'guesswhos': [],
             'clues': []
         }
@@ -50,10 +50,18 @@ def quit():
 ###  ###
 @app.route('/game/i/update', methods=['POST'])
 def update():
-    if request.method == 'POST':
-        if 'clue' in request.form:
-            session["status"]["clues"].append(request.form["clue"])
+    """
+    This function takes messages coming from web interface, then updates the status.
+    The message needs to be parsed in order to infer the .
+    """
+    status = session["status"]
+
+    # TODO: parse the clue if required
+    new_clue = request.form["clue"]
 
     # TODO: BASED THE CLUES, UPDATE THE STATUS
+    status["clues"].append(new_clue)
+    status["clues"] = list(set(status["clues"]))
+    session["status"] = status
 
     return json.dumps(session["status"])
