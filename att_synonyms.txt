@@ -1,0 +1,71 @@
+male man he
+asian asiatic chinese japanese korean vietnamese taiwanese indian
+white caucasian
+black dark-skinned dark_skinned colored
+baby infant
+child
+youth teenager
+middle_aged
+senior old
+black_hair dark_hair hair_dark
+blond_hair light_hairs blondish_hair hair_blond blond
+brown_hair hair_brown
+bald no_hair
+no_eyewear no_glasses
+eyeglasses glasses
+sunglasses
+mustache
+smiling happy
+frowning frown
+chubby fat round
+blurry
+harsh_lighting
+flash
+soft_lighting
+outdoor outside
+curly_hair curls hair_curly
+wavy_hair wavy hair_wavy
+straight_hair hair_straight
+receding_hairline
+bangs
+sideburns beard
+fully_visible_forehead
+partially_visible_forehead
+obstructed_forehead
+bushy_eyebrows
+arched_eyebrows
+narrow_eyes
+eyes_open open_eyes
+big_nose large_nose
+pointy_nose
+big_lips full_lips
+mouth_closed closed_mouth
+mouth_slightly_open smile
+teeth_not_visible
+no_beard
+goatee beard
+round_jaw
+double_chin
+wearing_hat hat
+oval_face
+square_face
+round_face
+color_photo
+posed_photo
+attractive_man attractive handsome beautiful
+attractive_woman attractive beautiful cute
+indian
+gray_hair hair_gray
+bags_under_eyes tired
+heavy_makeup
+rosy_cheeks red_cheeks
+shiny_skin
+pale_skin pale
+5_o'_clock_shadow
+strong_nose-mouth_lines
+flushed_face red_face
+high_cheekbones
+brown_eyes
+wearing_earrings earrings earring
+wearing_necktie necktie wearing_tie
+wearing_necklace necklace
