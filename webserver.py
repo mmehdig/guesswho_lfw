@@ -74,16 +74,22 @@ def update():
     """
     status = session["status"]
 
-    # TODO: parse the clue if required
+    # using parser to infer the intended clue, then update the old clue.
+    # if new clue has contradiction with old one, it will remove both of them.
     import numpy as np
     new_clue = np.array(parser(request.form["clue"]))
     old_clue = np.array(status["clues"])
     infered_clue = np.sign(new_clue + old_clue)
-
-    # TODO: BASED ON THE CLUES UPDATE THE STATUS
     status["clues"] = list(np.asscalar(i) for i in infered_clue)
+
+    # TODO: BASED ON THE CURRENT CLUES UPDATE THE GUESSWHOS AND THE STATUS
+    # a sub set of the context
+    status["guesswhos"] = status["context"]
+
+    # update the server status:
     session["status"] = status
 
+    # send it to the web interface in order to update its status:
     return json.dumps(session["status"])
 
 if __name__ == "__main__":

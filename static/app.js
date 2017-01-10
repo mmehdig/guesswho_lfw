@@ -42,11 +42,19 @@ function SimpleDM($, recognition, synthesis) {
           $("#status").html(JSON.stringify(json));
           $("#interface").html("");
           var reg = RegExp("lfw/(.+)/")
+
           json["context"].forEach(function(path){
              name = reg.exec(path)[1].replace("_", " ");
-             $("#interface").append('<div class="item"><img src="/img/'+path+'"/><div>'+name+'</div></div>');
+             $("#interface").append('<div class="item" data-item="'+path+'" ><img src="/img/'+path+'"/><div>'+name+'</div></div>');
              console.log(path);
           });
+
+          json["guesswhos"].forEach(function(path){
+             $("#interface .item[data-item='"+path+"']").addClass('candidate');
+             console.log(path);
+             console.log("#interface .item[data-item='"+path+"']");
+          });
+
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function
