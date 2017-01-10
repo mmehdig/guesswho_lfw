@@ -14,9 +14,7 @@ app.secret_key = 'the session secret !"#€%"'
     /game/quit reset the session and
 
 2. internal requests: (application layer)
-    /game/i/new
     /game/i/update
-    /game/i/status
 
 3. the logic
 
