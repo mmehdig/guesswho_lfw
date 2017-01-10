@@ -1,5 +1,8 @@
-from flask import Flask, render_template, session, request, redirect, url_for
+# -*- coding: utf-8 -*-
+from flask import Flask, render_template, session, request, redirect, url_for, send_from_directory
 import json
+import pickle
+from parser_imp import parser, attributes
 
 app = Flask(__name__)
 app.secret_key = 'the session secret !"#€%"'
@@ -15,9 +18,17 @@ app.secret_key = 'the session secret !"#€%"'
     /game/i/update
     /game/i/status
 
-3. ai logic
+3. the logic
 
 """
+
+# read the preprocessed embeddings from file:
+with open('dataset/embeddings/embeddings_align', 'rb') as f:
+    embeddings = pickle.load(f, encoding='latin1')
+
+# image paths
+with open('dataset/embeddings/imgpaths', 'rb') as f:
+    imgpaths = pickle.load(f)
 
 ### GAME INTERFACE ###
 @app.route("/")
@@ -28,14 +39,17 @@ def index():
 def game():
     if request.method == 'POST' and 'username' in request.form:
         session["username"] = request.form['username']
+
+        # initialize with a set of random images:
+        import random
+        random_context = random.sample(imgpaths, 10)
         session["status"] = {
-            'context': [],
-            'guesswhos': [],
-            'clues': []
+            'context': random_context, # random context
+            'guesswhos': random_context, # initialize the guess with all possible items
+            'clues': [0 for _ in attributes]
         }
 
     if "username" in session and len(session["username"])>0:
-        print(len(session["username"]))
         return render_template('layout.html', username=session["username"])
     else:
         return redirect(url_for('index'))
@@ -46,22 +60,31 @@ def quit():
     session.pop('status', None)
     return redirect(url_for('index'))
 
+### show an image from dataset ###
+@app.route('/img/<path:filename>')
+def show_image(filename):
+    return send_from_directory("dataset/", filename)
 
-###  ###
+### All the interactions with GUI and server lands here ###
 @app.route('/game/i/update', methods=['POST'])
 def update():
     """
-    This function takes messages coming from web interface, then updates the status.
-    The message needs to be parsed in order to infer the .
+    This function takes messages coming from web interface, then updates "status" on the server and the web interface.
+    The message needs to be parsed in order to infer its meaning.
     """
     status = session["status"]
 
     # TODO: parse the clue if required
-    new_clue = request.form["clue"]
+    import numpy as np
+    new_clue = np.array(parser(request.form["clue"]))
+    old_clue = np.array(status["clues"])
+    infered_clue = np.sign(new_clue + old_clue)
 
-    # TODO: BASED THE CLUES, UPDATE THE STATUS
-    status["clues"].append(new_clue)
-    status["clues"] = list(set(status["clues"]))
+    # TODO: BASED ON THE CLUES UPDATE THE STATUS
+    status["clues"] = list(np.asscalar(i) for i in infered_clue)
     session["status"] = status
 
     return json.dumps(session["status"])
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", ssl_context='adhoc', debug=True)

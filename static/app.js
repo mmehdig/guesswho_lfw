@@ -3,7 +3,7 @@ function SimpleDM($, recognition, synthesis) {
 
   this.status = {
     "clues": [],
-    "": [],
+    "context": [],
   };
 
   this.understand = function(text) {
@@ -40,6 +40,13 @@ function SimpleDM($, recognition, synthesis) {
         .done(function(json) {
           // show the status of the model
           $("#status").html(JSON.stringify(json));
+          $("#interface").html("");
+          var reg = RegExp("lfw/(.+)/")
+          json["context"].forEach(function(path){
+             name = reg.exec(path)[1].replace("_", " ");
+             $("#interface").append('<div class="item"><img src="/img/'+path+'"/><div>'+name+'</div></div>');
+             console.log(path);
+          });
         })
         // Code to run if the request fails; the raw request and
         // status codes are passed to the function
