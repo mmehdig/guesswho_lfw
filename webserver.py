@@ -83,7 +83,7 @@ def update():
     status["clues"] = list(np.asscalar(i) for i in infered_clue)
 
     # TODO: BASED ON THE CURRENT CLUES UPDATE THE GUESSWHOS AND THE STATUS
-    # a sub set of the context
+    # a sub set of the context, use classifier to guesswho, based on the clues
     status["guesswhos"] = status["context"]
 
     # update the server status:
