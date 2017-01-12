@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>The Guess Who?</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+  <style>
+  .item {
+    float: right;
+    width: 220px;
+    text-align: center;
+    margin: 10px;
+  }
+  .item img {
+    width: 220px;
+  }
+  .item.candidate {
+    background-color: #cfffcf;
+  };
+  </style>
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  <script>
+
+  $(function(){
+    // instantiate the speech recognition here:
+    let recog = new webkitSpeechRecognition();
+    //recognition.continuous = false;
+    recog.lang = 'en-US';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+
+    // instantiate the speech synthesis here:
+    let synth = window.speechSynthesis;
+
+    // instantiate the dialog manager with all these parameters.
+    let dm = new SimpleDM($, recog, synth);
+
+    $('form').on('submit', function(e){
+      // prevent form from submiting
+      e.preventDefault();
+
+      // reading the message
+      msg = $(this).children('[name="clue"]')[0].value;
+
+      // let the dialog manager handel it.
+      dm.understand(msg);
+
+      // update the form
+      $(this).children('[name="clue"]')[0].value = "";
+      return false;
+    });
+
+    $('form').submit();
+  });
+  </script>
+
+</head>
+<body>
+<div class="container">
+
+  <div class="row">
+    username: {{ username }}
+    <a href="{{ url_for('quit') }}">quit</a>
+  </div>
+
+  <div class="row">
+    <form method="GET">
+      <label for="clue">Give me a clue:</label>
+      <input name="clue" class="u-full-width" type="text" id="clue">
+    </form>
+  </div>
+
+  <div class="row" id="interface">
+
+  </div>
+  <pre><code id="status"></code></pre>
+</div>
+</body>
+</html>
