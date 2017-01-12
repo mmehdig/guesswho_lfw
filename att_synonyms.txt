@@ -8,7 +8,7 @@ youth teenager
 middle_aged
 senior old
 black_hair dark_hair hair_dark
-blond_hair light_hairs blondish_hair hair_blond blond
+blond_hair light_hair blondish_hair hair_blond blond blonde
 brown_hair hair_brown
 bald no_hair
 no_eyewear no_glasses
