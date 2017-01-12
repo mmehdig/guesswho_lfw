@@ -109,11 +109,7 @@ def update():
     #remove the faces that are inconsistent with the current clue       
     not_ok = []
     for i, attribute in enumerate(status["clues"]):
-        #print(attributes[i])
-        #print(attribute)
         for face in classifiedface:
-            #print(face[0])
-            #print(face[1][i])
             if attribute*face[1][i]<0:
                 not_ok.append(face)
     

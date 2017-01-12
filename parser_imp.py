@@ -1,4 +1,3 @@
-#attributes
 import re
 attributes = ['Male',
  'Asian',
@@ -115,6 +114,7 @@ def parser(sample):
             for i,synonym in enumerate(synonyms):
                 synonym = synonym.replace("_"," ")
                 att_synonym[synonyms[0].replace("_"," ")] +=[synonyms[i]]
+                
 
 
     #getting the antonyms from a file
@@ -125,11 +125,12 @@ def parser(sample):
             for antonym in antonyms[1:]:
                 antonym = antonym.replace("_"," ")
                 att_antonym[attribute.replace("_"," ")] +=[antonym]
+                
 
-    # parser
-    #print(len(attributes))
+  
+    
     result = [0] * 73
-    #print(len(result))
+    
     
     for i,attribute in enumerate(attributes):
         if len([1 for a in att_synonym[attribute.lower()] if a in sample_tockenized]):
