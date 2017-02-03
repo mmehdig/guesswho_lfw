@@ -1,14 +1,14 @@
 male man he
-asian asiatic chinese japanese korean vietnamese taiwanese indian
-white caucasian
-black dark-skinned dark_skinned colored
+asian asiatic chinese japanese korean vietnamese taiwanese indian 
+white caucasian white_man white_woman
+black dark-skinned dark_skinned colored black_man black_woman
 baby infant
 child
 youth teenager
 middle_aged
 senior old
 black_hair dark_hair hair_dark
-blond_hair light_hairs blondish_hair hair_blond blond
+blond_hair light_hair blondish_hair hair_blond blond blonde
 brown_hair hair_brown
 bald no_hair
 no_eyewear no_glasses
@@ -29,8 +29,8 @@ straight_hair hair_straight
 receding_hairline
 bangs
 sideburns beard
-fully_visible_forehead
-partially_visible_forehead
+fully_visible_forehead forehead
+partially_visible_forehead forehead
 obstructed_forehead
 bushy_eyebrows
 arched_eyebrows
@@ -41,7 +41,7 @@ pointy_nose
 big_lips full_lips
 mouth_closed closed_mouth
 mouth_slightly_open smile
-teeth_not_visible
+teeth_not_visible no_teeth
 no_beard
 goatee beard
 round_jaw
