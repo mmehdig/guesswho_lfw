@@ -1,5 +1,5 @@
 # Guess Who (A game on LFW)
-[The Guess who!](https://en.wikipedia.org/wiki/The_Guess_Who) is a two player game which one participant choose a face and other person guess which face has been chosen. In this version, the computer will guess who, while human player choose the picture and describes it.
+[The Guess who!](https://en.wikipedia.org/wiki/Guess_Who) is a two player game which one participant choose a face and other person guess which face has been chosen. In this version, the computer will guess who, while human player choose the picture and describes it.
 
 We are using the Labeled Faces in Wild (LFW) for training:
 
