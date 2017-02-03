@@ -1,4 +1,3 @@
-#attributes
 import re
 attributes = ['Male',
  'Asian',
@@ -83,16 +82,21 @@ def parser(sample):
     sample = sample.replace(' a ', ' ').replace(' an ', ' ').replace(' the ', ' ')
     sample = sample.replace('not ', 'not_').replace('no ', 'no_')
     sample = sample.replace('wearing ','wearing_')
+    sample = sample.replace('big ','big_').replace('large ',"large_").replace("visible ","visible_")
+    sample = sample.replace("bags under eyes","bags_under_eyes")
+    sample = sample.replace("open ","open_").replace("red face","red_face")
+    
 
     if re.match(r'.+hair\sis\snot.+',sample)!=None:
         sample = re.sub(r'.hair\sis\snot.'," not_hair_",sample)
     else:
         sample = re.sub(r'.hair\sis\s'," hair_",sample)
+    
 
     sample = sample.replace('brown ','brown_').replace('blue ','blue_').replace('blond ',"blond_").replace("black ","black_").replace('gray ','gray_')
 
     sample_tockenized = sample.split()
-    print(sample_tockenized)
+    #print(sample_tockenized)
 
     # dictionary
 
@@ -110,6 +114,7 @@ def parser(sample):
             for i,synonym in enumerate(synonyms):
                 synonym = synonym.replace("_"," ")
                 att_synonym[synonyms[0].replace("_"," ")] +=[synonyms[i]]
+                
 
 
     #getting the antonyms from a file
@@ -120,11 +125,12 @@ def parser(sample):
             for antonym in antonyms[1:]:
                 antonym = antonym.replace("_"," ")
                 att_antonym[attribute.replace("_"," ")] +=[antonym]
+                
 
-    # parser
-    print(len(attributes))
+  
+    
     result = [0] * 73
-    print(len(result))
+    
     
     for i,attribute in enumerate(attributes):
         if len([1 for a in att_synonym[attribute.lower()] if a in sample_tockenized]):
