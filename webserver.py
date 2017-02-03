@@ -82,7 +82,41 @@ def update():
 
     # TODO: BASED ON THE CURRENT CLUES UPDATE THE GUESSWHOS AND THE STATUS
     # a sub set of the context, use classifier to guesswho, based on the clues
-    status["guesswhos"] = status["context"]
+    #
+    
+    #get the embeddings for the images
+    chosenimgpaths = status["context"]
+    faceembeddings = [embeddings[imgpaths.index(path)] for path in chosenimgpaths]
+    with open("classifiers", 'rb') as f:
+         classifier_list = pickle.load(f)
+    
+    
+    
+    #classify the faces
+    results = []
+    for i,classifier in enumerate(classifier_list):
+         clf = classifier
+         y_guess =clf.predict(faceembeddings)
+         results.append(y_guess)
+    
+    #combine face with classification
+    classifiedface = []
+    for i,path in enumerate(chosenimgpaths):
+        classifiedface.append((path,[]))
+        for result in results:
+            classifiedface[i][1].append(result[i])
+     
+    #remove the faces that are inconsistent with the current clue       
+    not_ok = []
+    for i, attribute in enumerate(status["clues"]):
+        for face in classifiedface:
+            if attribute*face[1][i]<0:
+                not_ok.append(face)
+    
+    new_context = [face[0] for face in classifiedface if face not in not_ok]
+    
+    status["guesswhos"] = new_context
+    
 
     # update the server status:
     session["status"] = status
