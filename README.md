@@ -24,3 +24,13 @@ We also train the lexical descriptors from Kumar et al. (2009) connected to thes
       year={2009},
       organization={IEEE}
     }
+
+To create the embeddings of the faces we use a model from OpenFace:
+
+@techreport{amos2016openface,
+  title={OpenFace: A general-purpose face recognition
+    library with mobile applications},
+  author={Amos, Brandon and Bartosz Ludwiczuk and Satyanarayanan, Mahadev},
+  year={2016},
+  institution={CMU-CS-16-118, CMU School of Computer Science},
+}
