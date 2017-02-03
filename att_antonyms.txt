@@ -1,6 +1,6 @@
 male not_male no_male not_man no_man not_he no_he she woman her 
 asian not_asian no_asian not_asiatic no_asiatic not_chinese no_chinese not_japanese no_japanese not_korean no_korean not_vietnamese no_vietnamese not_taiwanese no_taiwanese not_indian no_indian
-white not_white no_white not_caucasian no_caucasian colored
+white not_white no_white not_caucasian no_caucasian colored not_black_man not_black_woman not_asian_man not_asian_woman
 black not_black no_black not_dark-skinned no_dark-skinned not_dark_skinned no_dark_skinned not_colored no_colored white
 baby not_baby no_baby not_infant no_infant
 child not_child no_child
@@ -41,8 +41,8 @@ pointy_nose not_pointy_nose no_pointy_nose
 big_lips not_big_lips no_big_lips not_full_lips no_full_lips
 mouth_closed not_mouth_closed no_mouth_closed not_closed_mouth no_closed_mouth
 mouth_slightly_open not_mouth_slightly_open no_mouth_slightly_open
-teeth_not_visible not_teeth_not_visible no_teeth_not_visible
-no_beard not_no_beard no_no_beard
+teeth_not_visible not_teeth_not_visible no_teeth_not_visible teeth
+no_beard not_no_beard no_no_beard beard
 goatee not_goatee no_goatee not_beard no_beard
 round_jaw not_round_jaw no_round_jaw
 double_chin not_double_chin no_double_chin
@@ -52,7 +52,7 @@ square_face not_square_face no_square_face
 round_face not_round_face no_round_face
 color_photo not_color_photo no_color_photo
 posed_photo not_posed_photo no_posed_photo
-attractive_man not_attractive_man no_attractive_man not_attractive no_attractive not_handsome no_handsome not_beautiful no_beautiful
+attractive_man not_attractive_man no_attractive_man not_attractive no_attractive not_handsome no_handsome not_beautiful no_beautiful ugly
 attractive_woman not_attractive_woman no_attractive_woman not_attractive no_attractive not_beautiful no_beautiful not_cute no_cute
 indian not_indian no_indian
 gray_hair not_gray_hair no_gray_hair not_hair_gray no_hair_gray
